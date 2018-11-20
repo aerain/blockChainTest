@@ -95,3 +95,103 @@ System.out.println("balance: " + balance);
 ```bash
 balance: 56638820
 ```
+
+> Address - Private Key
+- Java code
+```java
+// create a new private key
+String newPrivateKeyWIF = ECKey.createNewPrivateKey();
+System.out.println("private key: " + newPrivateKeyWIF);
+```
+
+- 결과 값
+```bash
+private key: L3nWh......
+```
+
+> Address - Bitcoin address
+- RIPEMD160(SHA256(K)) 함수로 다시 인코딩하여 생성함
+- JAVA Code
+```java
+// derive an address
+String your_wallet_address = ECKey.deriveAddress(newPrivateKeyWIF);
+System.out.println("address: " + your_wallet_address);
+```
+- 결과 값
+```bash
+address: 1MG4Y8...
+```
+
+> Transaction - 생성 및 서명
+- JAVA code
+```java
+// create a target address to send
+String toPrivateKeyWIF = ECKey.createNewPrivateKey();
+String toAddress = ECKey.deriveAddress(toPrivateKeyWIF);
+
+// create a transaction
+long amount = io.blocko.coinstack.Math.converToSatoshi("0.0002");
+long fee = io.bloco.coinstack.Math.convertToSatoshi("0.0001");
+
+TransactionBuilder builder = new TransactionBuilder();
+builder.addOutput(toAddress, amount);
+builder.setFee(fee);
+
+// sign the transaction using the private key
+String signedTx = client.createSignedTransaction(builder. "YOUR_PRIVATE_KEY");
+System.out.println(signedTx);
+```
+
+- Transaction은 블록에 저장된 주소 간의 거래 정보인 트랜잭션을 나타내는 객체
+
+|Attribute|Type|Description|
+|---|---|---|
+|transaction_hash|string|트랜잭션의 해시|
+|block_hash|list[string]|트랜잭션이 포함된 블록의 해시
+|block_hash.block_hash|string|트랜잭션이 포함된 블록의 해시
+|block_hash.block_height|number|트랜잭션이 포함된 블록의 높이
+|coinbase|boolean|Coinbase 트랜잭션 여부
+|inputs|array[object]|Transaction Input 목록
+|outputs|array[object]|Transaction Output 목록
+|timestamp|string|트랜잭션이 포함된 블록이 최초 승인된 시간 - date 참조
+|initialtimestamp|string|트랜잭션이 broadcast된 시간 - date 참조
+|addresses|array[string]|트랜잭션과 관련된 주소 목록
+
+> Transaction - 생성 및 서명
+- 결과 값: 문자열로 반환.
+```
+010000.....
+```
+
+> Transaction - 트랜잭션 전송
+- 서명된 트랜잭션은 이제 네트워크에 전송될 수 있음.
+- 만약 전송 과정에서 문제가 발생하거나, 트랜잭션 자체에 오류가 있으면 관련된 오류 코드로 원인을 확인할 수 있음.
+- 하지만 트랜잭션 자체에 오류가 없는 경우에도 블록체인 네트워크의 특성상 일시적으로 트랜잭션이 거부되는 경우가 있음.
+- 이 때는 네트워크에 성공적으로 전파될 때까지 재전송하면 됨.
+
+```java
+// send the signed transaction
+client.sendTransaction(signedTx);
+```
+
+## 실습
+---
+> 전자지갑 생성
+```bash
+$ rm class/*.class
+$ javac -encoding UTF-8 -cp "class/*" -d class/ *.java
+$ java -cp "class/*:class" App
+```
+
+> App.java 소스 수정
+```java
+public class App 
+{
+    public static void main(String[] args) throws IOEsception, CoinStackException {
+        System.out.println("# SampleMain");
+        CoinStackClient client = Testnet.createNewClient();
+        
+        // .. code
+    }
+}
+```

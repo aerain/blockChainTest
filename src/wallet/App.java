@@ -37,8 +37,8 @@ public class App
 		// System.out.println("- privateKey   : "+yourPrivateKey);
 		// System.out.println("  Your address : "+yourAddress);
 
-		// String address = "";
-		// String privateKey = "";
+		String address = "1FKCnHZk7h59Bb1X1Fcp3quKeXWGfcnXm1";
+		String privateKey = "KynyvGMiyU18kuqxb5FtSPiFvNq9gEpcLmS8Ky1X7pbNuxUiCiv8";
 
 
 		/**
@@ -61,26 +61,26 @@ public class App
 		 * blockchain send tx
  		 *
  		*/
-		// String SAMPLE_PRIVKEY = privateKey;
-	    // String SAMPLE_ADDRESS = address;
+		String SAMPLE_PRIVKEY = privateKey;
+	    String SAMPLE_ADDRESS = address;
 	
-    	// String SAMPLE_RECEIVER_ADDR1 = "1B854qBra6X9eFcjhdEv1trctaaHKvw7L5";
+    	String SAMPLE_RECEIVER_ADDR1 = "1NfAJ4VDtwyfpQvwegMgAVpaPaZJ3XSBuS";
 	    // String SAMPLE_RECEIVER_ADDR2 = "13FE4AQcr6AhWgZLiQ8YLwLAkF7hLjADD7";
 	
-	    // byte[] SAMPLE_TX_DATA = "SAMPLE_TEXT".getBytes();
-		// String privateKeyWIF = SAMPLE_PRIVKEY;
-		// String receiverAddr1 = SAMPLE_RECEIVER_ADDR1;
+	    byte[] SAMPLE_TX_DATA = "SAMPLE_TEXT".getBytes();
+		String privateKeyWIF = SAMPLE_PRIVKEY;
+		String receiverAddr1 = SAMPLE_RECEIVER_ADDR1;
 		// String receiverAddr2 = SAMPLE_RECEIVER_ADDR2;
-		// byte[] txdata = SAMPLE_TX_DATA;
+		byte[] txdata = SAMPLE_TX_DATA;
 
-		// System.out.println("### send simple tx");
-		// SampleTxBuild.sampleSendSimpleTx(client, privateKeyWIF, receiverAddr1, "0.0001");
+		System.out.println("### send simple tx");
+		SampleTxBuild.sampleSendSimpleTx(client, privateKeyWIF, receiverAddr1, "0.0001");
 		
-		// // System.out.println("### send data tx");
-		// // SampleTxBuild.sampleSendDataTx(client, privateKeyWIF, receiverAddr2, "0.0001", txdata);
+		// System.out.println("### send data tx");
+		// SampleTxBuild.sampleSendDataTx(client, privateKeyWIF, receiverAddr2, "0.0001", txdata);
 
-		// System.out.println("### My balance: " + address);
-		// SampleBalance.sampleGetBalance(client, address);
+		System.out.println("### My balance: " + address);
+		SampleBalance.sampleGetBalance(client, address);
 
 		// System.out.println("### Your balance: " + receiverAddr2);
 		// SampleBalance.sampleGetBalance(client, receiverAddr2);
