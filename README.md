@@ -23,8 +23,11 @@
 - 환경변수 등록
 
 > 프로그램 버전 확인
-- > javac -version
-- > javac 1.8.0_192
+
+```bash
+> javac -version
+javac 1.8.0_192
+```
 
 ## SDK API
 > Block
@@ -62,4 +65,33 @@ System.out.println("time: " + block.getBlockConfirmationTime());
 ```
 blockId: 000000000.......
 time: Fri Oct 07 15:25:34 KST 2016
+```
+
+> Address- Address Balance
+- Address Balance는 현재 특정 비트코인 주소에서 다른 주소로 송금 가능한 잔액을 사토시 단위로 나타내는 객체
+
+|Attribute|Type|Description|
+|:---:|:---:|:---:|
+|balance|number|주소의 사용가능한 잔고 (사토시 단위)
+
+> Address - Private Key
+- 개인키 생성
+- 1에서 2^256 사이의 숫자중 무작위로 정수 하나를 고르게 되는데 이것이 바로 개인키가 됨.
+- 개인키는 보통 Base58Check으로 인코딩하여 사용하는데, 이것을 비트코인에서는 Private Key WIF (Wallet Import Format)라고 부름.
+- WIF 형으로 변화하면 그 길이가 짧아지고 혼동하기 쉬운 문자열 (1 또는 i)이 제거되어 편리한 형태가 됨.
+
+> Address - Address Balance
+- 주소는 비트코인을 담고 있거나 OP_RETURN data를 담고 있음.
+- 흩어져 있는 UTXO(Unspent Output)의 비트코인의 수량을 합산하여 보여주는 기능.
+    -  e.g. 0.0001 BTC = 10000 satoshi
+
+- JAVA Code
+```java
+// get a remaining balance
+long balance = client.getBalance(your_wallet_address);
+System.out.println("balance: " + balance);
+```
+
+```bash
+balance: 56638820
 ```

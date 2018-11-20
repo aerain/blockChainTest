@@ -3,7 +3,7 @@ import java.security.MessageDigest;
 public class SHAHashingExample
 {
      public static void hashing(String value) throws Exception {
-
+        test:
         for (int i = 0; i < 100; i++) { 
             String password = value + Integer.toString(i); 
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -13,6 +13,9 @@ public class SHAHashingExample
 
             for (int j = 0; j < byteData.length; j++) {
                 sb.append(Integer.toString((byteData[j] & 0xff) + 0x100, 16).substring(1));
+            }
+            for(int j = 0; j < 3; j++) {
+                if(sb.charAt(j) == '0') break test;
             }
             System.out.println("Hex format ["+i+"] : " + sb.toString());
         }
@@ -53,7 +56,7 @@ public class SHAHashingExample
     	}
     	System.out.println("Hex format : " + hexString.toString());
 
-        //hashing(password);
+        hashing(password);
     }
 }
 

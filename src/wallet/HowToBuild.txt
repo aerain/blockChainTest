@@ -1,0 +1,3 @@
+del class\*.class
+javac -encoding utf-8 -cp "class\*" -d class\ *.java 
+java -cp "class\*;class" App 
